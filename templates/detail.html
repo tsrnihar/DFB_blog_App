@@ -2,8 +2,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>This belongs to id: {{object.id}}</h2>
-    <h3>{{object.title}}</h3>
-    <p>{{object.content}}</p>       
+    <div class = "post-entry">
+        <h2>This belongs to id: {{object.id}}</h2>
+        <h3>{{object.title}}</h3>
+        <p>{{object.content}}</p>       
+    </div>
+
+    <p><a href="{% url 'edit' object.id %}">+ Edit Blog Post</a></p>
+    <p></p><a href="{% url 'delete' object.id %}">+ Delete Blog Post</a></p>
 {% endblock content %}
     

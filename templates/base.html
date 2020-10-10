@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400">    
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <title>Blogs</title>
 </head>
 <body>
     <div class = "container">
-    <a href="{% url 'blog'%}"><h1>Django Blogs</h1></a>
-    {% block content %}
+        <header>
+            <div class = "nav-left">
+                <a href="{% url 'blog'%}"><h1>Django Blogs</h1></a>
+            </div>
+            <div class = "nav-right">
+                <a href="{% url 'create'%}"><h1>+Create new Blog</h1></a>
+            </div>
+        </header>
+        {% if user.is_authenticated %}
+            <h3>Hi {{user.username}}!</h3>
+            <p><a href="{% url 'logout' %}">Logout</a></p>
+        {% else %}
+            <p>Hey you aren't logged in yet! <a href="{% url 'login' %}">login now</a> </p>        
+        {% endif %}
+            
+        {% block content %}
         
-    {% endblock content %}
+        {% endblock content %}
     </div>
         
 
